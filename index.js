@@ -86,63 +86,27 @@ let finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+//Let's make an array, in which we will store an calculate all of the required data
+let result = finances.reduce((a, b, i) => {
+    let d = (i > 1) ? a : {total: a[1], average: a[1], sumChange: 0, lastMonth: a[1], increase: a, decrease: a},
+    change = b[1] - d.lastMonth;
+    d.total += b[1];//Lets calculate the total profit
+    d.sumChange += change;
+    d.lastMonth = b[1];
+    d.average = d.sumChange / i;//Average change
+    d.increase = (d.increase[1] > change) ? d.increase : [b[0], change];//Greatest increase in profits
+    d.decrease = (d.decrease[1] < change) ? d.decrease : [b[0], change];//greatest decrease in profits
+    return d
+})
 
-// Your task is to write JavaScript code that analyzes the records to calculate each of the following:
+console.log("Financial Analysis") //Log to console title of the program
+console.log("----------------------------------------------------")//logs the separator line, visual
+let monthsAmount = finances.length;//Here Is the array, in which the program will store the total number of items from the "Finances" Array
+console.log("Total number of months in datasheet is: " + monthsAmount);//Log Total amount of months to the console
 
-// The total number of months included in the dataset.
-  // Count up how many things are in the array
-  // array.length
-  // Need a variable to store the value of array.length
-
-  let monthsAmount = finances.length;
-  console.log("Total number of months in datasheet is: " + monthsAmount);
-
-// The net total amount of Profit / Losses over the entire period.
-  // Adding up the money
-  // Keep a rolling total
-  // Need a variable to store the rolling total
-  // for loop to iterate over the array
-    // Inside that for loop, access position 1 of each array element to get the numbers
-
-let totalAmount = 0;
-for (var i  = 0; i < finances.length; i++){
-    totalAmount  += finances[i][1];
-}
-console.log("Profit total amount is : " + totalAmount);
-
-// The average of the changes in Profit / Losses over the entire period.
-// You will need to track what the total change in profits are from month to month and then find the average.
-// (Total / Number of months)
-
-
-
-
-// The greatest increase in profits(date and amount) over the entire period.
-
-// The greatest decrease in losses(date and amount) over the entire period.
-
-  // Total up the differences between each pair of adjoining months & divide by number of array elements
-  // for loop starting with i = 1
-    // Each iteration, subtract the data at position [1] of the previous element from the data at position [1] of the current element
-    // Put that data into a new array variable
-      // So, we need to arr.push() each new 'change' value to the new array
-    // Need a variable to store greatest amount of change (+)
-    // Need a variable to store greatest amount of change (-)
-    // Each iteration, compare the difference to the previous difference
-    // If it's higher than what's already stored in greatest-profit variable, reassign that variable to equal finances[i]
-      // greatest[0] = finances[i][0]
-      // greatest[1] = changeArr[i-1]
-    // If it's lower than what's already stored in greatest-loss variable, reassign that variable to equal finances[i]
-
-  // Add up the total in the new 'changes' array
-    // Need a variable to store the rolling total for this array that's different that the rolling total of profits
-    // for loop to iterate over the changes array
-      // add each element in turn to the rolling total
-
-  // Take that 'total changes amount' variable and divide it by the number of elements in the array
-    // Look up how to limit the answer to two decimal points
-
-
-
-// console.log("The table below shows 3 columns. 1st column is assigned item number, 2nd is the date and 3rd is the profit amount for that month")
-// console.table(finances);
+console.log("Total Profit : " + result.total);//Log total profit from result.finances
+console.log("Average Change : $" + result.average);//Log Average from result.average
+console.log("Greatest Increase In profits : " + result.increase);//log the greatest increase in profits from result.increase
+console.log("Greatest Decrease in Profits : " + result.decrease);//log the greatest decrease in profits from result.decrease
+console.log("----------------------------------------------------")
+console.log("Total Profit : " + result.sumChange);
