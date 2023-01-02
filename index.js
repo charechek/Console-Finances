@@ -90,23 +90,33 @@ let finances = [
 let result = finances.reduce((a, b, i) => {
     let d = (i > 1) ? a : {total: a[1], average: a[1], sumChange: 0, lastMonth: a[1], increase: a, decrease: a},
     change = b[1] - d.lastMonth;
-    d.total += b[1];//Lets calculate the total profit
+//Lets calculate the total profit
+    d.total += b[1];
     d.sumChange += change;
     d.lastMonth = b[1];
-    d.average = d.sumChange / i;//Average change
-    d.increase = (d.increase[1] > change) ? d.increase : [b[0], change];//Greatest increase in profits
-    d.decrease = (d.decrease[1] < change) ? d.decrease : [b[0], change];//greatest decrease in profits
+    //Average change
+    d.average = d.sumChange / i;
+    //Greatest increase in profits
+    d.increase = (d.increase[1] > change) ? d.increase : [b[0], change];
+    //greatest decrease in profits
+    d.decrease = (d.decrease[1] < change) ? d.decrease : [b[0], change];
     return d
 })
-
-console.log("Financial Analysis") //Log to console title of the program
-console.log("----------------------------------------------------")//logs the separator line, visual
-let monthsAmount = finances.length;//Here Is the array, in which the program will store the total number of items from the "Finances" Array
-console.log("Total number of months in datasheet is: " + monthsAmount);//Log Total amount of months to the console
-
-console.log("Total Profit : " + result.total);//Log total profit from result.finances
-console.log("Average Change : $" + result.average);//Log Average from result.average
-console.log("Greatest Increase In profits : " + result.increase);//log the greatest increase in profits from result.increase
-console.log("Greatest Decrease in Profits : " + result.decrease);//log the greatest decrease in profits from result.decrease
+//Log to console title of the program
+console.log("Financial Analysis") 
+//logs the separator line, visual
+console.log("----------------------------------------------------")
+//Here Is the array, in which the program will store the total number of items from the "Finances" Array
+let monthsAmount = finances.length;
+//Log Total amount of months to the console
+console.log("Total number of months in datasheet is: " + monthsAmount);
+//Log total profit from result.finances
+console.log("Total Profit : " + result.total);
+//Log Average from result.average
+console.log("Average Change : $" + result.average);
+//log the greatest increase in profits from result.increase
+console.log("Greatest Increase In profits : " + result.increase);
+//log the greatest decrease in profits from result.decrease
+console.log("Greatest Decrease in Profits : " + result.decrease);
 console.log("----------------------------------------------------")
 console.log("Total Profit : " + result.sumChange);
