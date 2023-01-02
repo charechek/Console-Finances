@@ -118,5 +118,4 @@ console.log("Average Change : $" + result.average);
 console.log("Greatest Increase In profits : " + result.increase);
 //log the greatest decrease in profits from result.decrease
 console.log("Greatest Decrease in Profits : " + result.decrease);
-console.log("----------------------------------------------------")
-console.log("Total Profit : " + result.sumChange);
+console.log("----------------------------------------------------");
